@@ -14,11 +14,13 @@ spring:
         connection:
           provider_disables_autocommit: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
     open-in-view: true
     data:
       jpa:
         repositories:
           enabled: true
-  
+    jackson:
+      serialization:
+        WRITE_DATES_AS_TIMESTAMPS: false

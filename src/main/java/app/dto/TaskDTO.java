@@ -65,4 +65,15 @@ public class TaskDTO {
     public void setTimeEnd(LocalDateTime timeEnd) {
         this.timeEnd = timeEnd;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + id + "'" +
+            ", name='" + name + "'" +
+            ", priority='" + priority + "'" +
+            ", timeBegin='" + timeBegin + "'" +
+            ", timeEnd='" + timeEnd + "'" +
+            "}";
+    }
 }

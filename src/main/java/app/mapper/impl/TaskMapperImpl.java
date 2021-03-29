@@ -3,6 +3,7 @@ package app.mapper.impl;
 import org.springframework.stereotype.Component;
 
 import app.dto.TaskDTO;
+import app.exception.BadValuePriorityException;
 import app.mapper.BaseMapper;
 import app.model.Task;
 import app.model.util.Priority;
@@ -15,28 +16,44 @@ public class TaskMapperImpl implements BaseMapper<Task, TaskDTO> {
         if (entity == null) {
             return null;
         }
+        TaskDTO taskDTO = new TaskDTO();
+        taskDTO.setId(entity.getId());
+        taskDTO.setName(entity.getName());
+        taskDTO.setTimeBegin(entity.getTimeBegin());
+        taskDTO.setTimeEnd(entity.getTimeEnd());
+        if (entity.getPriority().name().equals("LOW")) {
+            taskDTO.setPriority("LOW");
+        }
+        else if (entity.getPriority().name().equals("MEDIUM")) {
+            taskDTO.setPriority("MEDIUM");
+        }
+        else if (entity.getPriority().name().equals("HIGH")) {
+            taskDTO.setPriority("HIGH");
+        } else {
+            throw new BadValuePriorityException();
+        }
 
-        
-        return null;
+        return taskDTO;
     }
 
     @Override
-    public Task toEntity(TaskDTO dto) throws IllegalArgumentException {
+    public Task toEntity(TaskDTO dto) {
         if (dto == null) {
             return null;
         }
         Task task = new Task();
+        task.setId(dto.getId());
         task.setName(dto.getName());
-        if (dto.getPriority() == "LOW") {
+        if (dto.getPriority().equals("LOW")) {
             task.setPriority(Priority.LOW);
         }
-        else if (dto.getPriority() == "MEDIUM") {
+        else if (dto.getPriority().equals("MEDIUM")) {
             task.setPriority(Priority.MEDIUM);
         }
-        else if (dto.getPriority() == "HIGH") {
+        else if (dto.getPriority().equals("HIGH")) {
             task.setPriority(Priority.HIGH);
         } else {
-            throw new IllegalArgumentException();
+            throw new BadValuePriorityException();
         }
         task.setTimeBegin(dto.getTimeBegin());
         task.setTimeEnd(dto.getTimeEnd());
