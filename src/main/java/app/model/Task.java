@@ -1,5 +1,6 @@
 package app.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -22,26 +23,30 @@ public class Task {
     private String name;
     @Column(name = "priority")
     private Priority priority;
-    @Column(name = "time_begin")
-    private LocalDateTime timeBegin;
-    @Column(name = "time_end")
-    private LocalDateTime timeEnd;
+    @Column(name = "date_begin")
+    private LocalDate dateBegin;
+    @Column(name = "date_end")
+    private LocalDate dateEnd;
+    @Column(name = "ready")
+    private boolean ready;
 
     public Task(Long id, 
         String name, 
         Priority priority, 
-        LocalDateTime timeBegin, 
-        LocalDateTime timeEnd) 
+        LocalDate dateBegin, 
+        LocalDate dateEnd,
+        boolean ready) 
     {
         this.id = id;
         this.name = name;
         this.priority = priority;
-        this.timeBegin = timeBegin;
-        this.timeEnd = timeEnd;
+        this.dateBegin = dateBegin;
+        this.dateEnd = dateEnd;
+        this.ready = ready;
     }
 
     public Task() {
-        this(null, null, null, null, null);
+        this(null, null, null, null, null, false);
     }
 
     public Long getId() {
@@ -68,30 +73,39 @@ public class Task {
         this.priority = priority;
     }
 
-    public LocalDateTime getTimeBegin() {
-        return this.timeBegin;
+    public LocalDate getDateBegin() {
+        return this.dateBegin;
     }
 
-    public void setTimeBegin(LocalDateTime timeBegin) {
-        this.timeBegin = timeBegin;
+    public void setDateBegin(LocalDate dateBegin) {
+        this.dateBegin = dateBegin;
     }
 
-    public LocalDateTime getTimeEnd() {
-        return this.timeEnd;
+    public LocalDate getDateEnd() {
+        return this.dateEnd;
     }
 
-    public void setTimeEnd(LocalDateTime timeEnd) {
-        this.timeEnd = timeEnd;
+    public void setDateEnd(LocalDate dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
+    public boolean isReady() {
+        return this.ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
     }
     
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", priority='" + getPriority() + "'" +
-            ", timeBegin='" + getTimeBegin() + "'" +
-            ", timeEnd='" + getTimeEnd() + "'" +
+            " id='" + this.getId() + "'" +
+            ", name='" + this.getName() + "'" +
+            ", priority='" + this.getPriority() + "'" +
+            ", timeBegin='" + this.getDateBegin() + "'" +
+            ", timeEnd='" + this.getDateEnd() + "'" +
+            ", ready='" + this.isReady() + "'" +
             "}";
     }
 }

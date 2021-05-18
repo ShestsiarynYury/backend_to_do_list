@@ -19,8 +19,8 @@ public class TaskMapperImpl implements BaseMapper<Task, TaskDTO> {
         TaskDTO taskDTO = new TaskDTO();
         taskDTO.setId(entity.getId());
         taskDTO.setName(entity.getName());
-        taskDTO.setTimeBegin(entity.getTimeBegin());
-        taskDTO.setTimeEnd(entity.getTimeEnd());
+        taskDTO.setDateBegin(entity.getDateBegin());
+        taskDTO.setDateEnd(entity.getDateEnd());
         if (entity.getPriority().name().equals("LOW")) {
             taskDTO.setPriority("LOW");
         }
@@ -32,6 +32,7 @@ public class TaskMapperImpl implements BaseMapper<Task, TaskDTO> {
         } else {
             throw new BadValuePriorityException();
         }
+        taskDTO.setReady(entity.isReady());
 
         return taskDTO;
     }
@@ -55,8 +56,9 @@ public class TaskMapperImpl implements BaseMapper<Task, TaskDTO> {
         } else {
             throw new BadValuePriorityException();
         }
-        task.setTimeBegin(dto.getTimeBegin());
-        task.setTimeEnd(dto.getTimeEnd());
+        task.setDateBegin(dto.getDateBegin());
+        task.setDateEnd(dto.getDateEnd());
+        task.setReady(dto.isReady());
 
         return task;
     }

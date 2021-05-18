@@ -42,7 +42,7 @@ public class TaskServiceImpl implements BaseService<TaskDTO> {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public List<TaskDTO> getListDtoByPageAndSize(Integer page, Integer size) {
-        List<TaskDTO> dtos = new ArrayList();
+        List<TaskDTO> dtos = new ArrayList<>();
         for (Task t : this.taskRepository.findAll(PageRequest.of(page, size)).toList()) {
             dtos.add(this.taskMapper.toDto(t));
         }
@@ -57,7 +57,7 @@ public class TaskServiceImpl implements BaseService<TaskDTO> {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public List<TaskDTO> getAll() {
-        List<TaskDTO> dtos = new ArrayList();
+        List<TaskDTO> dtos = new ArrayList<>();
         for (Task t : this.taskRepository.findAll()) {
             dtos.add(this.taskMapper.toDto(t));
         }

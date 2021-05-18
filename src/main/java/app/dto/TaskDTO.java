@@ -1,29 +1,32 @@
 package app.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class TaskDTO {
     private Long id;
     private String name;
     private String priority;
-    private LocalDateTime timeBegin;
-    private LocalDateTime timeEnd;
+    private LocalDate dateBegin;
+    private LocalDate dateEnd;
+    private boolean ready;
 
     public TaskDTO(Long id, 
         String name,
         String priority, 
-        LocalDateTime timeBegin, 
-        LocalDateTime timeEnd) 
+        LocalDate dateBegin, 
+        LocalDate dateEnd,
+        boolean ready) 
     {
         this.id = id;
         this.name = name;
         this.priority = priority;
-        this.timeBegin = timeBegin;
-        this.timeEnd = timeEnd;
+        this.dateBegin = dateBegin;
+        this.dateEnd = dateEnd;
+        this.ready = ready;
     }
 
     public TaskDTO() {
-        this(null, null, "LOW", null, null);
+        this(null, null, "LOW", null, null, false);
     }
 
     public Long getId() {
@@ -50,30 +53,39 @@ public class TaskDTO {
         this.priority = priority;
     }
 
-    public LocalDateTime getTimeBegin() {
-        return this.timeBegin;
+    public LocalDate getDateBegin() {
+        return this.dateBegin;
     }
 
-    public void setTimeBegin(LocalDateTime timeBegin) {
-        this.timeBegin = timeBegin;
+    public void setDateBegin(LocalDate dateBegin) {
+        this.dateBegin = dateBegin;
     }
 
-    public LocalDateTime getTimeEnd() {
-        return this.timeEnd;
+    public LocalDate getDateEnd() {
+        return this.dateEnd;
     }
 
-    public void setTimeEnd(LocalDateTime timeEnd) {
-        this.timeEnd = timeEnd;
+    public void setDateEnd(LocalDate dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
+    public boolean isReady() {
+        return this.ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
     }
 
     @Override
     public String toString() {
         return "{" +
-            " id='" + id + "'" +
-            ", name='" + name + "'" +
-            ", priority='" + priority + "'" +
-            ", timeBegin='" + timeBegin + "'" +
-            ", timeEnd='" + timeEnd + "'" +
+            " id='" + this.id + "'" +
+            ", name='" + this.name + "'" +
+            ", priority='" + this.priority + "'" +
+            ", timeBegin='" + this.dateBegin + "'" +
+            ", timeEnd='" + this.dateEnd + "'" +
+            ", ready='" + this.ready + "'" +
             "}";
     }
 }
